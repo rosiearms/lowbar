@@ -17,4 +17,17 @@ _.first = function (arr, n = 1) {
     }
 };
 
+_.last = function (arr, n = 1) {
+    if (!Array.isArray(arr) && !arr === 'string' || arr === null) return undefined;
+    if (n === 1) {
+        return arr[arr.length - 1];
+    } else {
+        if (typeof arr === 'string') {
+            return arr.slice(-n).split('');
+        } else {
+            return arr.slice(-n);
+        }
+    }
+};
+
 module.exports = _;

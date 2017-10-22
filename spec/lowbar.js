@@ -48,3 +48,28 @@ describe('#first', function () {
         expect(_.first([1, 2, 3], 2)).to.eql([1, 2]);
     });
 });
+
+describe('#last', function () {
+    it('is a function', function () {
+        expect(_.last).to.be.a('function');
+    });
+    it('returns undefined if anything other than an array or string is passed as an argument', function () {
+        expect(_.last({ name: 'foo' })).to.equal(undefined);
+        expect(_.last(10)).to.equal(undefined);
+        expect(_.last(NaN)).to.equal(undefined);
+        expect(_.last(null)).to.equal(undefined);
+        expect(_.last(0)).to.equal(undefined);
+    });
+    it('returns the last letter of a string if no number is passed as a second arguement', function () {
+        expect(_.last('string')).to.equal('g');
+    });
+    it('returns last n elements of a string in an array when n is passed as a second arguement', function () {
+        expect(_.last('string', 3)).to.eql(['i', 'n', 'g']);
+    });
+    it('returns the last element of an array if no number is given as a second argument', function () {
+        expect(_.last([1, 2, 3])).to.equal(3);
+    });
+    it('returns n elements from an array when passed n as a second argument', function () {
+        expect(_.last([1, 2, 3], 2)).to.eql([2, 3]);
+    });
+});
