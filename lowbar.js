@@ -30,4 +30,16 @@ _.last = function (arr, n = 1) {
     }
 };
 
+_.each = function (list, iteratee) {
+    if (Array.isArray(list) || typeof list === 'string') {
+        for (var i = 0; i < list.length; i++) {
+            iteratee(list[i], i, list);
+        }
+    } else {
+        for (var key in list) {
+            iteratee(list[key], key, list)
+        }
+    }
+};
+
 module.exports = _;

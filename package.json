@@ -23,5 +23,8 @@
     "eslint": "^3.15.0",
     "husky": "^0.13.1"
   },
-  "homepage": "https://github.com/rosiearms/lowbar#readme"
+  "homepage": "https://github.com/rosiearms/lowbar#readme",
+  "dependencies": {
+    "sinon": "^4.0.1"
+  }
 }

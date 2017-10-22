@@ -73,3 +73,33 @@ describe('#last', function () {
         expect(_.last([1, 2, 3], 2)).to.eql([2, 3]);
     });
 });
+
+describe.only('#each', function () {
+    it('is a function', function () {
+        expect(_.each).to.be.a('function');
+    });
+    it('calls the iteratee as many times as items in the passed array', function () {
+        var count = 0;
+        function incrCount() {
+            count++;
+        }
+        _.each([1, 2, 3], incrCount);
+        expect(count).to.equal(3);
+    });
+    it('calls the iteratee passing each element of the array as the first argument', function () {
+        var bucket = [];
+        function putIn() {
+            bucket.push(arguments[0]);
+        }
+        _.each([1, 2, 3], putIn);
+        expect(bucket).to.eql([1, 2, 3]);
+    });
+    it('iterates over objects', function () {
+        var bucket = [];
+        function putIn() {
+            bucket.push(arguments[0])
+        }
+        _.each({ one: '1', two: '2', three: '3' }, putIn);
+        expect(bucket).to.eql(['1', '2', '3']);
+    });
+});
