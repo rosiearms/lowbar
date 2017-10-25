@@ -52,4 +52,14 @@ _.indexOf = function (arr, val) {
     return res;
 };
 
+_.filter = function (arr, iteratee) {
+    var newArr = [];
+    _.each(arr, function (item) {
+        if (iteratee(item)) {
+            newArr.push(item);
+        }
+    });
+    return newArr;
+};
+
 module.exports = _;

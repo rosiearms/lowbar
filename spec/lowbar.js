@@ -109,13 +109,28 @@ describe('#indexOf', function () {
         expect(_.indexOf).to.be.a('function');
     });
     it('returns -1 if the value is not found in the passed array', function () {
-        expect(_.indexOf([1, 2, 3], 2)).to.equal(1);
-        expect(_.indexOf([1, 5, 3, 60, 10, 1], 60)).to.equal(3);
-        expect(_.indexOf([1, 5, 3, 12, 6, 0], 6)).to.equal(4);
+        expect(_.indexOf([1, 2, 3], 5)).to.equal(-1);
     });
     it('returns the index position of the passed value in the array', function () {
         expect(_.indexOf([1, 2, 3], 2)).to.equal(1);
         expect(_.indexOf([1, 5, 3, 60, 10, 1], 60)).to.equal(3);
         expect(_.indexOf([1, 5, 3, 12, 6, 0], 6)).to.equal(4);
+    });
+    it('returns the index position of passed element in a string', function () {
+        expect(_.indexOf('string', 't')).to.equal(1);
+    });
+    it('returns -1 if the passed element is not found in the given string', function () {
+        expect(_.indexOf('string', 'h')).to.equal(-1);
+    });
+});
+
+describe('#filter', function () {
+    it('is a function', function () {
+        expect(_.filter).to.be.a('function');
+    });
+    it('looks through each value in the array, returning an array of all the values that pass the truth test', function () {
+        expect(_.filter([1, 2, 3, 4, 5, 6], function (num) {
+            return num % 2 === 0;
+        })).to.eql([2, 4, 6]);
     });
 });
