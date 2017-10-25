@@ -42,4 +42,14 @@ _.each = function (list, iteratee) {
     }
 };
 
+_.indexOf = function (arr, val) {
+    let res = -1;
+    _.each(arr, function (item, i) {
+        if (item === val && res === -1) {
+            res = i;
+        }
+    });
+    return res;
+};
+
 module.exports = _;

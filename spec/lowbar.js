@@ -74,7 +74,7 @@ describe('#last', function () {
     });
 });
 
-describe.only('#each', function () {
+describe('#each', function () {
     it('is a function', function () {
         expect(_.each).to.be.a('function');
     });
@@ -101,5 +101,21 @@ describe.only('#each', function () {
         }
         _.each({ one: '1', two: '2', three: '3' }, putIn);
         expect(bucket).to.eql(['1', '2', '3']);
+    });
+});
+
+describe('#indexOf', function () {
+    it('is a function', function () {
+        expect(_.indexOf).to.be.a('function');
+    });
+    it('returns -1 if the value is not found in the passed array', function () {
+        expect(_.indexOf([1, 2, 3], 2)).to.equal(1);
+        expect(_.indexOf([1, 5, 3, 60, 10, 1], 60)).to.equal(3);
+        expect(_.indexOf([1, 5, 3, 12, 6, 0], 6)).to.equal(4);
+    });
+    it('returns the index position of the passed value in the array', function () {
+        expect(_.indexOf([1, 2, 3], 2)).to.equal(1);
+        expect(_.indexOf([1, 5, 3, 60, 10, 1], 60)).to.equal(3);
+        expect(_.indexOf([1, 5, 3, 12, 6, 0], 6)).to.equal(4);
     });
 });
