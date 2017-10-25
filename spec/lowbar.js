@@ -94,10 +94,10 @@ describe.only('#each', function () {
         _.each([1, 2, 3], putIn);
         expect(bucket).to.eql([1, 2, 3]);
     });
-    it('iterates over objects', function () {
+    it('iterates over objects and iterates as many times as items in the passed object', function () {
         var bucket = [];
         function putIn() {
-            bucket.push(arguments[0])
+            bucket.push(arguments[0]);
         }
         _.each({ one: '1', two: '2', three: '3' }, putIn);
         expect(bucket).to.eql(['1', '2', '3']);

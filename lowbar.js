@@ -37,7 +37,7 @@ _.each = function (list, iteratee) {
         }
     } else {
         for (var key in list) {
-            iteratee(list[key], key, list)
+            iteratee(list[key], key, list);
         }
     }
 };
