@@ -30,7 +30,9 @@ _.last = function (arr, n = 1) {
     }
 };
 
-_.each = function (list, iteratee) {
+_.each = function (list, iteratee, context) {
+    if (context) iteratee = iteratee.bind(context);
+    if (!iteratee) return list;
     if (Array.isArray(list) || typeof list === 'string') {
         for (var i = 0; i < list.length; i++) {
             iteratee(list[i], i, list);
@@ -40,6 +42,7 @@ _.each = function (list, iteratee) {
             iteratee(list[key], key, list);
         }
     }
+    return list;
 };
 
 _.indexOf = function (arr, val) {

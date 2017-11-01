@@ -74,20 +74,28 @@ describe('#last', function () {
     });
 });
 
-describe('#each', function () {
+describe.only('#each', function () {
     it('is a function', function () {
         expect(_.each).to.be.a('function');
     });
     it('calls the iteratee as many times as items in the passed array', function () {
-        var count = 0;
+        let count = 0;
         function incrCount() {
             count++;
         }
         _.each([1, 2, 3], incrCount);
         expect(count).to.equal(3);
     });
+    it('calls the iteratee as many times as items in the passed string', function () {
+        let count = 0;
+        function incrCount() {
+            count++;
+        }
+        _.each('lowbar', incrCount);
+        expect(count).to.equal(6);
+    });
     it('calls the iteratee passing each element of the array as the first argument', function () {
-        var bucket = [];
+        let bucket = [];
         function putIn() {
             bucket.push(arguments[0]);
         }
@@ -95,12 +103,29 @@ describe('#each', function () {
         expect(bucket).to.eql([1, 2, 3]);
     });
     it('iterates over objects and iterates as many times as items in the passed object', function () {
+        let count = 0;
+        function incrCount() {
+            count++;
+        }
+        _.each({ one: '1', two: '2', three: '3' }, incrCount);
+        expect(count).to.eql(3);
+    });
+    it('returns the list if passed in an invalid format', function () {
+        function incrCount() {
+            console.log('lowbar');
+        }
+        expect(_.each(123, incrCount)).to.eql(123);
+        expect(_.each(null, incrCount)).to.eql(null);
+        expect(_.each(0, incrCount)).to.eql(0);
+    });
+    it('should bind the iteratee to the context object if one is passed', function () {
+        const context = {name: 'lowbar'};
         var bucket = [];
         function putIn() {
-            bucket.push(arguments[0]);
+            bucket.push(context.name);
         }
-        _.each({ one: '1', two: '2', three: '3' }, putIn);
-        expect(bucket).to.eql(['1', '2', '3']);
+        _.each([1, 2], putIn);
+        expect(bucket).to.eql(['lowbar', 'lowbar']);
     });
 });
 
@@ -108,19 +133,15 @@ describe('#indexOf', function () {
     it('is a function', function () {
         expect(_.indexOf).to.be.a('function');
     });
-    it('returns -1 if the value is not found in the passed array', function () {
+    it('returns -1 if the value is not found in the passed array or string', function () {
         expect(_.indexOf([1, 2, 3], 5)).to.equal(-1);
+        expect(_.indexOf('string', 'h')).to.equal(-1);
     });
-    it('returns the index position of the passed value in the array', function () {
+    it('returns the index position of the passed value in the array or string', function () {
         expect(_.indexOf([1, 2, 3], 2)).to.equal(1);
         expect(_.indexOf([1, 5, 3, 60, 10, 1], 60)).to.equal(3);
-        expect(_.indexOf([1, 5, 3, 12, 6, 0], 6)).to.equal(4);
-    });
-    it('returns the index position of passed element in a string', function () {
+        expect(_.indexOf('string', 'n')).to.equal(4);
         expect(_.indexOf('string', 't')).to.equal(1);
-    });
-    it('returns -1 if the passed element is not found in the given string', function () {
-        expect(_.indexOf('string', 'h')).to.equal(-1);
     });
 });
 
