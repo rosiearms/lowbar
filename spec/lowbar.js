@@ -74,7 +74,7 @@ describe('#last', function () {
     });
 });
 
-describe.only('#each', function () {
+describe('#each', function () {
     it('is a function', function () {
         expect(_.each).to.be.a('function');
     });
@@ -129,7 +129,7 @@ describe.only('#each', function () {
     });
 });
 
-describe('#indexOf', function () {
+describe.only('#indexOf', function () {
     it('is a function', function () {
         expect(_.indexOf).to.be.a('function');
     });
@@ -142,6 +142,12 @@ describe('#indexOf', function () {
         expect(_.indexOf([1, 5, 3, 60, 10, 1], 60)).to.equal(3);
         expect(_.indexOf('string', 'n')).to.equal(4);
         expect(_.indexOf('string', 't')).to.equal(1);
+    });
+    it('searches for the index position of the passed value from the specified number if passed as a third arg', function () {
+        expect(_.indexOf([7, 8, 9, 10, 11, 12, 13, 14, 15], 11, 2)).to.equal(4);
+        expect(_.indexOf([1, 2, 3, 4, 5, 6, 7, 8, 9], 7, 5)).to.equal(6);
+        expect(_.indexOf('string', 'n', 2)).to.equal(4);
+        expect(_.indexOf('string', 'g', 3)).to.equal(5);
     });
 });
 
