@@ -288,5 +288,9 @@ describe.only('#contains', function () {
         expect(_.contains({one:'one', two: 'two'}, 'two')).to.equal(true);
         expect(_.contains({one:'one', two: 'two'}, 'three')).to.equal(false);
     });
+    it('searches from a given index when passed a fromIndex argument', function () {
+        expect(_.contains([1,2,3,4,5,6], 2, 3)).to.equal(false);
+        expect(_.contains('string', 't', 3)).to.equal(false);
+    });
 });
 
