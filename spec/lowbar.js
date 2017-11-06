@@ -263,5 +263,11 @@ describe.only('#map', function () {
         expect(_.map('str', function(letter, i) {return letter + i;})).to.eql(['s0', 't1', 'r2']);
         expect(_.map({one:'1', two:'2'}, function(item, key) {return item + key;})).to.eql(['1one', '2two']);
     });
+    it('binds the iteratee to the context object if one is passed', function () {
+        let context = {one:'1', two: '2', three:'3'};
+        let res = [];
+        _.map(['i', 'i', 'i'], function(num) { return res.push(num + this.one);}, context);
+    expect(res).to.eql(['i1','i1','i1']);
+    });
 });
 

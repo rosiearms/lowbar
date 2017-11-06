@@ -112,6 +112,7 @@ return newList;
 }; 
 
 _.map = function (list, iteratee, context) { 
+    if (context) iteratee = iteratee.bind(context);
     let newList = [];
     _.each(list, function(item, i, list) {
         newList.push(iteratee(item, i, list));
