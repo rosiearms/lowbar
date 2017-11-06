@@ -78,14 +78,15 @@ _.indexOf = function (arr, val, isSorted) {
     } return res;
 };
 
-_.filter = function (arr, iteratee) {
-    var newArr = [];
-    _.each(arr, function (item) {
-        if (iteratee(item)) {
-            newArr.push(item);
+_.filter = function (list, predicate, context) {
+    if(context) predicate = predicate.bind(this);
+    var newList = [];
+    _.each(list, function (item) {
+        if (predicate(item)) {
+            newList.push(item);
         }
     });
-    return newArr;
+    return newList;
 };
 
 module.exports = _;

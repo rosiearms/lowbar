@@ -129,7 +129,7 @@ describe('#each', function () {
     });
 });
 
-describe.only('#indexOf', function () {
+describe('#indexOf', function () {
     it('is a function', function () {
         expect(_.indexOf).to.be.a('function');
     });
@@ -155,13 +155,30 @@ describe.only('#indexOf', function () {
     });
 });
 
-describe('#filter', function () {
+describe.only('#filter', function () {
     it('is a function', function () {
         expect(_.filter).to.be.a('function');
     });
-    it('looks through each value in the array, returning an array of all the values that pass the truth test', function () {
+    it('looks through each value in the list, returning an array of all the values that return true', function () {
         expect(_.filter([1, 2, 3, 4, 5, 6], function (num) {
             return num % 2 === 0;
         })).to.eql([2, 4, 6]);
+        expect(_.filter('string', function (letter) {
+            return letter === 'n';
+        })).to.eql(['n']);
+        expect(_.filter({n:'n', s:'s'}, function (letter) {
+            return letter === 'n';
+        })).to.eql(['n']);
+    });
+    it('returns an empty array if an invalid format is given or no item returns true', function () {
+        expect(_.filter([7,7,7,7,7], function (num) {
+            return num % 2 === 0;
+        })).to.eql([]);
+        expect(_.filter(null, function (letter) {
+            return letter === 'n';
+        })).to.eql([]);
+        expect(_.filter(0, function (letter) {
+            return letter === 'n';
+        })).to.eql([]);
     });
 });
