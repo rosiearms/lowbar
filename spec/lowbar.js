@@ -294,7 +294,7 @@ describe('#contains', function () {
     });
 });
 
-describe.only('#pluck', function () {
+describe('#pluck', function () {
     it('is a function', function () {
         expect(_.pluck).to.be.a('function');
     });
@@ -309,3 +309,13 @@ describe.only('#pluck', function () {
     });
 });
 
+describe.only('#reduce', function () {
+    it('is a function', function () {
+        expect(_.reduce).to.be.a('function');
+    });
+    it('reduces the list to a single value', function () {
+        expect(_.reduce([1,2,3], function(memo, num) {return num + memo;}, 0)).to.equal(6);
+        expect(_.reduce('string', function(memo, letter) { if (letter === 't') memo.push(letter); return memo;}, [])).to.eql(['t']);
+        expect(_.reduce({one:'1', two:'2', three:'3'}, function(memo, item) { memo.push(item); return memo;}, [])).to.eql(['1', '2', '3']);
+    });
+});

@@ -142,4 +142,15 @@ _.pluck = function(list, propName) {
     });
 };
 
+_.reduce = function(list, iteratee, memo) {
+     _.each(list, function(item, i, list) { 
+       if (!memo) {
+           memo = item;
+           iteratee(memo, item, i, list);
+       }
+       else memo = iteratee(memo, item, i, list);     
+    });
+    return memo;
+};
+
 module.exports = _;
