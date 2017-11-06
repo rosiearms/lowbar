@@ -134,4 +134,12 @@ _.contains = function (list, val, fromIndex = 0) {
     return false;
 };
 
+_.pluck = function(list, propName) {
+    return _.map(list, function(item, i, list) {
+        if (list[i].hasOwnProperty(propName)) {
+            return list[i][propName];
+        }
+    });
+};
+
 module.exports = _;

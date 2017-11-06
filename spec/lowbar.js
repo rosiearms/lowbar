@@ -276,7 +276,7 @@ describe('#map', function () {
     });
 });
 
-describe.only('#contains', function () {
+describe('#contains', function () {
     it('is a function', function () {
         expect(_.contains).to.be.a('function');
     });
@@ -291,6 +291,15 @@ describe.only('#contains', function () {
     it('searches from a given index when passed a fromIndex argument', function () {
         expect(_.contains([1,2,3,4,5,6], 2, 3)).to.equal(false);
         expect(_.contains('string', 't', 3)).to.equal(false);
+    });
+});
+
+describe.only('#pluck', function () {
+    it('is a function', function () {
+        expect(_.pluck).to.be.a('function');
+    });
+    it('returns an array of property values from the property name passed', function () {
+        expect(_.pluck([{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}], 'name')).to.eql(['moe', 'larry', 'curly']);
     });
 });
 
