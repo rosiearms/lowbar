@@ -253,6 +253,11 @@ describe.only('#map', function () {
     it('is a function', function () {
         expect(_.map).to.be.a('function');
     });
+    it('returns an empty array if list is an invalid format', function () {
+        expect(_.map(null, function(num) {return num + 1;})).to.eql([]);
+        expect(_.map(1234, function(num) {return num + 1;})).to.eql([]);
+        expect(_.map(0, function(num) {return num + 1;})).to.eql([]);
+    });
     it('returns an array of items that have been passed through an iteratee function, works for arrays, strings and objects', function () {
         expect(_.map([1,2,3], function(num) {return num + 1;})).to.eql([2,3,4]);
         expect(_.map('string', function(letter) {return letter + 1;})).to.eql(['s1', 't1', 'r1', 'i1', 'n1', 'g1']);
