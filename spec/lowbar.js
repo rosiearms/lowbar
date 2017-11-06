@@ -145,9 +145,13 @@ describe.only('#indexOf', function () {
     });
     it('searches for the index position of the passed value from the specified number if passed as a third arg', function () {
         expect(_.indexOf([7, 8, 9, 10, 11, 12, 13, 14, 15], 11, 2)).to.equal(4);
-        expect(_.indexOf([1, 2, 3, 4, 5, 6, 7, 8, 9], 7, 5)).to.equal(6);
+        expect(_.indexOf([4, 2, 9, 7, 1, 5, 6, 3, 8], 7, 5)).to.equal(-1);
         expect(_.indexOf('string', 'n', 2)).to.equal(4);
         expect(_.indexOf('string', 'g', 3)).to.equal(5);
+    });
+    it('conducts a binary search on an array if isSorted is passed as true', function () {
+        expect(_.indexOf([7, 8, 9, 10, 11, 12, 13, 14, 15], 11, true)).to.equal(4);
+        expect(_.indexOf([4, 5, 9, 7, 1, 2, 6, 3, 8], 7, true)).to.equal(-1);
     });
 });
 

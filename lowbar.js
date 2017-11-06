@@ -47,22 +47,35 @@ _.each = function (list, iteratee, context) {
 
 _.indexOf = function (arr, val, isSorted) {
     let res = -1;
-    if (Array.isArray(arr) && isSorted === undefined || typeof arr === 'string' && isSorted === undefined) {
-    _.each(arr, function (item, i) {
-        if (item === val && res === -1) {
-            res = i;
+    if ((Array.isArray(arr) || typeof arr === 'string') && isSorted === undefined) {
+        _.each(arr, function (item, i) {
+            if (item === val && res === -1) {
+                res = i;
+            }
+        });
+    } if ((Array.isArray(arr) || typeof arr === 'string') && typeof isSorted === 'number') {
+        let res = -1;
+        for (var i = isSorted; i < arr.length; i++) {
+            if (arr[i] === val) res = i;
         }
-    });
-    return res;
-} 
-
-if (Array.isArray(arr) && typeof isSorted === 'number' || typeof arr === 'string' && typeof isSorted === 'number') {
-    let res = 0;
-    for (var i = isSorted; i < arr.length; i++) {
-        if (arr[i] === val) res = i;
-    } 
-    return res;
-}
+        return res;
+    } if (Array.isArray(arr) && isSorted === true) {
+        let beg = 0;
+        let end = arr.length - 1;
+        let mid;
+        while (end >= beg) {
+            mid = Math.floor((beg + end) / 2);
+            if (arr[mid] === val) {
+                return mid;
+            }
+            else if (arr[mid] < val) {
+                beg = mid + 1;
+            }
+            else {
+                end = mid - 1;
+            }
+        }
+    } return res;
 };
 
 _.filter = function (arr, iteratee) {
