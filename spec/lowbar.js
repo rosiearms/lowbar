@@ -298,6 +298,12 @@ describe.only('#pluck', function () {
     it('is a function', function () {
         expect(_.pluck).to.be.a('function');
     });
+    it('returns undefined or an empty array if list is an invalid format', function () {
+        expect(_.pluck(['moe', 'larry', 'curly'], 'curly')).to.eql([undefined, undefined, undefined]);
+        expect(_.pluck('moe', 'm')).to.eql([undefined, undefined, undefined]);
+        expect(_.pluck(null, null)).to.eql([]);
+        expect(_.pluck(false, false)).to.eql([]);
+    });
     it('returns an array of property values from the property name passed', function () {
         expect(_.pluck([{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}], 'name')).to.eql(['moe', 'larry', 'curly']);
     });
