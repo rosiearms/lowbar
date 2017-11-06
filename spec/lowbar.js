@@ -74,7 +74,7 @@ describe('#last', function () {
     });
 });
 
-describe.only('#each', function () {
+describe('#each', function () {
     it('is a function', function () {
         expect(_.each).to.be.a('function');
     });
@@ -155,7 +155,7 @@ describe('#indexOf', function () {
     });
 });
 
-describe.only('#filter', function () {
+describe('#filter', function () {
     it('is a function', function () {
         expect(_.filter).to.be.a('function');
     });
@@ -273,6 +273,20 @@ describe('#map', function () {
         let res = [];
         _.map(['i', 'i', 'i'], function(num) { return res.push(num + this.one);}, context);
     expect(res).to.eql(['i1','i1','i1']);
+    });
+});
+
+describe.only('#contains', function () {
+    it('is a function', function () {
+        expect(_.contains).to.be.a('function');
+    });
+    it('returns true if the passed value is found in the passed array and false if not', function () {
+        expect(_.contains([1,2,3], 3)).to.equal(true);
+        expect(_.contains([1,2,3], 6)).to.equal(false);
+        expect(_.contains('string', 'n')).to.equal(true);
+        expect(_.contains('string', 'f')).to.equal(false);
+        expect(_.contains({one:'one', two: 'two'}, 'two')).to.equal(true);
+        expect(_.contains({one:'one', two: 'two'}, 'three')).to.equal(false);
     });
 });
 

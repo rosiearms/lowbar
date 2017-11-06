@@ -103,21 +103,35 @@ _.reject = function (list, predicate, context) {
 _.uniq = function (list, isSorted) {
     let newList = [];
     if (Array.isArray(list) || typeof list === 'string') {
-    for (var i = 0; i < list.length; i++) {
-       if ( _.indexOf(newList, list[i], isSorted) === -1) newList.push(list[i]);
+        for (var i = 0; i < list.length; i++) {
+            if (_.indexOf(newList, list[i], isSorted) === -1) newList.push(list[i]);
+        }
+        return newList;
     }
     return newList;
-}
-return newList;
-}; 
+};
 
-_.map = function (list, iteratee, context) { 
+_.map = function (list, iteratee, context) {
     if (context) iteratee = iteratee.bind(context);
     let newList = [];
-    _.each(list, function(item, i, list) {
+    _.each(list, function (item, i, list) {
         newList.push(iteratee(item, i, list));
     });
     return newList;
+};
+
+_.contains = function (list, val, fromIndex = 0) {
+    if (Array.isArray(list) || typeof list === 'string') {
+        if (_.indexOf(list, val, fromIndex) === -1) {
+            return false;
+        } else return true;
+    }
+    if (typeof list === 'object' && list != null) {
+        for (var key in list) {
+            if (list[key] === val) return true;
+        }
+    }
+    return false;
 };
 
 module.exports = _;
