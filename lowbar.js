@@ -89,4 +89,15 @@ _.filter = function (list, predicate, context) {
     return newList;
 };
 
+_.reject = function (list, predicate, context) {
+    if (context) predicate = predicate.bind(this);
+    var newList = [];
+    _.each(list, function (item) {
+        if (predicate(item) === false) {
+            newList.push(item);
+        }
+    });
+    return newList;
+};
+
 module.exports = _;

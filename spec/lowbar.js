@@ -155,7 +155,7 @@ describe('#indexOf', function () {
     });
 });
 
-describe.only('#filter', function () {
+describe('#filter', function () {
     it('is a function', function () {
         expect(_.filter).to.be.a('function');
     });
@@ -188,6 +188,43 @@ describe.only('#filter', function () {
             res.push(context.name);
         }
         _.filter([7,7], putIn, context);
+    expect(res).to.eql(['string', 'string']);
+    });
+});
+
+describe.only('#reject', function () {
+    it('is a function', function () {
+        expect(_.reject).to.be.a('function');
+    });
+    it('looks through each value in the list, returning an array of all the values that return false', function () {
+        expect(_.reject([1, 2, 3, 4, 5, 6], function (num) {
+            return num % 2 === 0;
+        })).to.eql([1,3,5]);
+        expect(_.reject('string', function (letter) {
+            return letter === 'n';
+        })).to.eql(['s','t','r','i','g']);
+        expect(_.reject({n:'n', s:'s'}, function (letter) {
+            return letter === 'n';
+        })).to.eql(['s']);
+    });
+    it('returns an empty array if an invalid format is given or no item returns false', function () {
+        expect(_.reject([6,6,6,6], function (num) {
+            return num % 2 === 0;
+        })).to.eql([]);
+        expect(_.reject(null, function (letter) {
+            return letter === 'n';
+        })).to.eql([]);
+        expect(_.reject(0, function (letter) {
+            return letter === 'n';
+        })).to.eql([]);
+    });
+    it('binds the list to the context object if one is passed', function () {
+        let context = {name: 'string'};
+        let res = [];
+        function putIn() {
+            res.push(context.name);
+        }
+        _.reject([7,7], putIn, context);
     expect(res).to.eql(['string', 'string']);
     });
 });
