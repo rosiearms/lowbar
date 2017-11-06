@@ -229,7 +229,7 @@ describe('#reject', function () {
     });
 });
 
-describe.only('#uniq', function () {
+describe('#uniq', function () {
     it('is a function', function () {
         expect(_.uniq).to.be.a('function');
     });
@@ -246,6 +246,22 @@ describe.only('#uniq', function () {
     it('uses isSorted to conduct a faster search when passed true as a second argument', function () {
         expect(_.uniq([1,1,1,2,2,3,3,4,4,4])).to.eql([1,2,3,4]);
         expect(_.uniq('sssstttrrriiinnnggg')).to.eql(['s','t','r','i','n','g']);
+    });
+});
+
+describe.only('#map', function () {
+    it('is a function', function () {
+        expect(_.map).to.be.a('function');
+    });
+    it('returns an array of items that have been passed through an iteratee function, works for arrays, strings and objects', function () {
+        expect(_.map([1,2,3], function(num) {return num + 1;})).to.eql([2,3,4]);
+        expect(_.map('string', function(letter) {return letter + 1;})).to.eql(['s1', 't1', 'r1', 'i1', 'n1', 'g1']);
+        expect(_.map({one:'1', two:'2'}, function(item) {return item + 1;})).to.eql(['11', '21']);
+    });
+    it('takes an iteratee function that tracks the index or key of the list as it iterates', function () {
+        expect(_.map([1,2,3], function(num, i) {return num + i;})).to.eql([1,3,5]);
+        expect(_.map('str', function(letter, i) {return letter + i;})).to.eql(['s0', 't1', 'r2']);
+        expect(_.map({one:'1', two:'2'}, function(item, key) {return item + key;})).to.eql(['1one', '2two']);
     });
 });
 

@@ -111,4 +111,12 @@ _.uniq = function (list, isSorted) {
 return newList;
 }; 
 
+_.map = function (list, iteratee, context) { 
+    let newList = [];
+    _.each(list, function(item, i, list) {
+        newList.push(iteratee(item, i, list));
+    });
+    return newList;
+};
+
 module.exports = _;
