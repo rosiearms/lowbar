@@ -79,7 +79,7 @@ _.indexOf = function (arr, val, isSorted) {
 };
 
 _.filter = function (list, predicate, context) {
-    if(context) predicate = predicate.bind(this);
+    if (context) predicate = predicate.bind(this);
     var newList = [];
     _.each(list, function (item) {
         if (predicate(item)) {

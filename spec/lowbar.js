@@ -181,4 +181,13 @@ describe.only('#filter', function () {
             return letter === 'n';
         })).to.eql([]);
     });
+    it('binds the list to the context object if one is passed', function () {
+        let context = {name: 'string'};
+        let res = [];
+        function putIn() {
+            res.push(context.name);
+        }
+        _.filter([7,7], putIn, context);
+    expect(res).to.eql(['string', 'string']);
+    });
 });
