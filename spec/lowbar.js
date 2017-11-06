@@ -318,4 +318,9 @@ describe.only('#reduce', function () {
         expect(_.reduce('string', function(memo, letter) { if (letter === 't') memo.push(letter); return memo;}, [])).to.eql(['t']);
         expect(_.reduce({one:'1', two:'2', three:'3'}, function(memo, item) { memo.push(item); return memo;}, [])).to.eql(['1', '2', '3']);
     });
+    it('returns the memo if passed a list in an invalid format', function () {
+        expect(_.reduce(12345, function(memo, num) {return num + memo;}, 0)).to.equal(0);
+        expect(_.reduce(null, function(memo, letter) { if (letter === 't') memo.push(letter); return memo;}, [])).to.eql([]);
+        expect(_.reduce(true, function(memo, item) { memo.push(item); return memo;}, [])).to.eql([]);
+    });
 });
