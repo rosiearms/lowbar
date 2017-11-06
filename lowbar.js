@@ -102,10 +102,13 @@ _.reject = function (list, predicate, context) {
 
 _.uniq = function (list, isSorted) {
     let newList = [];
+    if (Array.isArray(list) || typeof list === 'string') {
     for (var i = 0; i < list.length; i++) {
        if ( _.indexOf(newList, list[i], isSorted) === -1) newList.push(list[i]);
     }
     return newList;
-};
+}
+return newList;
+}; 
 
 module.exports = _;

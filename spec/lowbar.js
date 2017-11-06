@@ -233,6 +233,12 @@ describe.only('#uniq', function () {
     it('is a function', function () {
         expect(_.uniq).to.be.a('function');
     });
+    it('returns an empty array if list is passed in an invalid format', function () {
+        expect(_.uniq({one:'1', two:'2'}, false)).to.eql([]);
+        expect(_.uniq(null, true)).to.eql([]);
+        expect(_.uniq(true, false)).to.eql([]);
+        expect(_.uniq(12345, false)).to.eql([]);
+    });
     it('returns a new array of unique items from a passed array or string', function () {
         expect(_.uniq([1,3,4,1,2,2,4,3,5])).to.eql([1,3,4,2,5]);
         expect(_.uniq('sttriinng')).to.eql(['s','t','r','i','n','g']);
@@ -242,3 +248,4 @@ describe.only('#uniq', function () {
         expect(_.uniq('sssstttrrriiinnnggg')).to.eql(['s','t','r','i','n','g']);
     });
 });
+
