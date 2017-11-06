@@ -74,7 +74,7 @@ describe('#last', function () {
     });
 });
 
-describe('#each', function () {
+describe.only('#each', function () {
     it('is a function', function () {
         expect(_.each).to.be.a('function');
     });
@@ -122,9 +122,9 @@ describe('#each', function () {
         const context = {name: 'lowbar'};
         var bucket = [];
         function putIn() {
-            bucket.push(context.name);
+            bucket.push(this.name);
         }
-        _.each([1, 2], putIn);
+        _.each([1, 2], putIn, context);
         expect(bucket).to.eql(['lowbar', 'lowbar']);
     });
 });
@@ -155,7 +155,7 @@ describe('#indexOf', function () {
     });
 });
 
-describe('#filter', function () {
+describe.only('#filter', function () {
     it('is a function', function () {
         expect(_.filter).to.be.a('function');
     });
@@ -185,7 +185,7 @@ describe('#filter', function () {
         let context = {name: 'string'};
         let res = [];
         function putIn() {
-            res.push(context.name);
+            res.push(this.name);
         }
         _.filter([7,7], putIn, context);
     expect(res).to.eql(['string', 'string']);
@@ -222,7 +222,7 @@ describe('#reject', function () {
         let context = {name: 'string'};
         let res = [];
         function putIn() {
-            res.push(context.name);
+            res.push(this.name);
         }
         _.reject([7,7], putIn, context);
     expect(res).to.eql(['string', 'string']);
@@ -249,7 +249,7 @@ describe('#uniq', function () {
     });
 });
 
-describe.only('#map', function () {
+describe('#map', function () {
     it('is a function', function () {
         expect(_.map).to.be.a('function');
     });
