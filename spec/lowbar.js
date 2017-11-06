@@ -323,4 +323,8 @@ describe.only('#reduce', function () {
         expect(_.reduce(null, function(memo, letter) { if (letter === 't') memo.push(letter); return memo;}, [])).to.eql([]);
         expect(_.reduce(true, function(memo, item) { memo.push(item); return memo;}, [])).to.eql([]);
     });
+    it('binds the iteratee to the context object if passed one', function () {
+        let context = {one:'1', two:'2'};
+        expect(_.reduce([1,2], function(memo) {memo.push(this.one); return memo;}, [], context)).to.eql(['1', '1']);
+    });
 });

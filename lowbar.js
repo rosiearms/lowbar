@@ -142,7 +142,8 @@ _.pluck = function(list, propName) {
     });
 };
 
-_.reduce = function(list, iteratee, memo) {
+_.reduce = function(list, iteratee, memo, context) {
+    if (context) iteratee = iteratee.bind(context);
      _.each(list, function(item, i, list) { 
        if (!memo) {
            memo = item;
