@@ -100,4 +100,12 @@ _.reject = function (list, predicate, context) {
     return newList;
 };
 
+_.uniq = function (list, isSorted) {
+    let newList = [];
+    for (var i = 0; i < list.length; i++) {
+       if ( _.indexOf(newList, list[i], isSorted) === -1) newList.push(list[i]);
+    }
+    return newList;
+};
+
 module.exports = _;

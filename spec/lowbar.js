@@ -192,7 +192,7 @@ describe('#filter', function () {
     });
 });
 
-describe.only('#reject', function () {
+describe('#reject', function () {
     it('is a function', function () {
         expect(_.reject).to.be.a('function');
     });
@@ -226,5 +226,19 @@ describe.only('#reject', function () {
         }
         _.reject([7,7], putIn, context);
     expect(res).to.eql(['string', 'string']);
+    });
+});
+
+describe.only('#uniq', function () {
+    it('is a function', function () {
+        expect(_.uniq).to.be.a('function');
+    });
+    it('returns a new array of unique items from a passed array or string', function () {
+        expect(_.uniq([1,3,4,1,2,2,4,3,5])).to.eql([1,3,4,2,5]);
+        expect(_.uniq('sttriinng')).to.eql(['s','t','r','i','n','g']);
+    });
+    it('uses isSorted to conduct a faster search when passed true as a second argument', function () {
+        expect(_.uniq([1,1,1,2,2,3,3,4,4,4])).to.eql([1,2,3,4]);
+        expect(_.uniq('sssstttrrriiinnnggg')).to.eql(['s','t','r','i','n','g']);
     });
 });
