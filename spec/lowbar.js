@@ -356,7 +356,7 @@ describe('#every', function () {
     });
 });
 
-describe.only('#some', function () {
+describe('#some', function () {
     it('is a function', function () {
         expect(_.some).to.be.a('function');
     });
@@ -380,5 +380,15 @@ describe.only('#some', function () {
         let res = [];
         _.some([2,2,4], function() { res.push(this.four);}, context);
         expect(res).to.eql(['4','4','4']);
+    });
+});
+
+describe.only('#extend', function () {
+    it('is a function', function () {
+        expect(_.extend).to.be.a('function');
+    });
+    it('returns the destination object with all the items in the source object copied over to it', function () {
+        expect(_.extend({one:'1', three:'3'}, {two:'2', four:'4'})).to.eql({one:'1', three:'3', two:'2', four:'4'});
+        expect(_.extend({one:'1', three:'3'}, {two:'2', four:{three: '3', one: '1'}})).to.eql({one:'1', three:'3', two:'2', four:{three: '3', one: '1'}});
     });
 });
