@@ -309,7 +309,7 @@ describe('#pluck', function () {
     });
 });
 
-describe.only('#reduce', function () {
+describe('#reduce', function () {
     it('is a function', function () {
         expect(_.reduce).to.be.a('function');
     });
@@ -326,5 +326,16 @@ describe.only('#reduce', function () {
     it('binds the iteratee to the context object if passed one', function () {
         let context = {one:'1', two:'2'};
         expect(_.reduce([1,2], function(memo) {memo.push(this.one); return memo;}, [], context)).to.eql(['1', '1']);
+    });
+});
+
+describe.only('#every', function () {
+    it('is a function', function () {
+        expect(_.every).to.be.a('function');
+    });
+    it('returns true if all items in the array, string or object pass the predicate test', function () {
+        expect(_.every([2,2,4,6,6], function(num) {return num % 2 === 0;})).to.equal(true);
+        expect(_.every({two:'2', four:'4'}, function(num) {return num % 2 === 0;})).to.equal(true);
+        expect(_.every('string', function(letter) {return letter !== 'z';})).to.equal(true);
     });
 });

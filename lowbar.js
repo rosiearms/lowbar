@@ -154,4 +154,17 @@ _.reduce = function(list, iteratee, memo, context) {
     return memo;
 };
 
+_.every = function(list, predicate) {
+    if (Array.isArray(list) || typeof list === 'string') {
+    for (var i = 0; i < list.length; i++) {
+        if (predicate(list[i]) === false) return false;
+    }
+} else if (typeof list === 'object' || list !== null) {
+    for (var key in list) {
+        if (predicate(list[key]) === false) return false;
+    }
+}
+return true;
+};
+
 module.exports = _;
