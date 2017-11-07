@@ -338,4 +338,9 @@ describe.only('#every', function () {
         expect(_.every({two:'2', four:'4'}, function(num) {return num % 2 === 0;})).to.equal(true);
         expect(_.every('string', function(letter) {return letter !== 'z';})).to.equal(true);
     });
+    it('returns false if at least one item in the array, string or object does not pass the predicate test', function () {
+        expect(_.every([2,2,4,6,7], function(num) {return num % 2 === 0;})).to.equal(false);
+        expect(_.every({two:'2', four:'4', five:'5'}, function(num) {return num % 2 === 0;})).to.equal(false);
+        expect(_.every('string', function(letter) {return letter === 'n';})).to.equal(false);
+    });
 });
