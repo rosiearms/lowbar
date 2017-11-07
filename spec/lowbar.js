@@ -333,6 +333,11 @@ describe.only('#every', function () {
     it('is a function', function () {
         expect(_.every).to.be.a('function');
     });
+    it('returns true if passed a list in an invalid format', function () {
+        expect(_.every(12345, function(num) {return num % 2 === 0;})).to.equal(true);
+        expect(_.every(null, function(num) {return num % 2 === 0;})).to.equal(true);
+        expect(_.every(false, function(letter) {return letter !== 'z';})).to.equal(true);
+    });
     it('returns true if all items in the array, string or object pass the predicate test', function () {
         expect(_.every([2,2,4,6,6], function(num) {return num % 2 === 0;})).to.equal(true);
         expect(_.every({two:'2', four:'4'}, function(num) {return num % 2 === 0;})).to.equal(true);
