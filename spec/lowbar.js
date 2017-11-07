@@ -360,6 +360,11 @@ describe.only('#some', function () {
     it('is a function', function () {
         expect(_.some).to.be.a('function');
     });
+    it('returns false if passed a list in an invalid format', function () {
+        expect(_.some(12345, function(num) {return num % 2 === 0;})).to.equal(false);
+        expect(_.some(null, function(num) {return num % 2 === 0;})).to.equal(false);
+        expect(_.some(false, function(letter) {return letter !== 'z';})).to.equal(false);
+    });
     it('returns true if at least one item in the array, object or string passes the predicate test', function () {
         expect(_.some([7,7,4,6,6], function(num) {return num % 2 === 0;})).to.equal(true);
         expect(_.some({one:'1', two:'2', three:'3', four:'4'}, function(num) {return num % 2 === 0;})).to.equal(true);
