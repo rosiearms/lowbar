@@ -391,4 +391,7 @@ describe.only('#extend', function () {
         expect(_.extend({one:'1', three:'3'}, {two:'2', four:'4'})).to.eql({one:'1', three:'3', two:'2', four:'4'});
         expect(_.extend({one:'1', three:'3'}, {two:'2', four:{three: '3', one: '1'}})).to.eql({one:'1', three:'3', two:'2', four:{three: '3', one: '1'}});
     });
+    it('replaces properties of the same name in the source object with the properties in the destination object', function () {
+        expect(_.extend({one:'1', two:'2', three:'3'}, {one:'one', three:'three'})).to.eql({one:'one', two:'2', three:'three'});
+    });
 });
