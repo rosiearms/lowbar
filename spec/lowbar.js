@@ -329,7 +329,7 @@ describe('#reduce', function () {
     });
 });
 
-describe.only('#every', function () {
+describe('#every', function () {
     it('is a function', function () {
         expect(_.every).to.be.a('function');
     });
@@ -353,5 +353,21 @@ describe.only('#every', function () {
         let res = [];
         _.every([2,2,4], function() { res.push(this.four);}, context);
         expect(res).to.eql(['4','4','4']);
+    });
+});
+
+describe.only('#some', function () {
+    it('is a function', function () {
+        expect(_.some).to.be.a('function');
+    });
+    it('returns true if at least one item in the array, object or string passes the predicate test', function () {
+        expect(_.some([7,7,4,6,6], function(num) {return num % 2 === 0;})).to.equal(true);
+        expect(_.some({one:'1', two:'2', three:'3', four:'4'}, function(num) {return num % 2 === 0;})).to.equal(true);
+        expect(_.some('string', function(letter) {return letter === 'n';})).to.equal(true);
+    });
+    it('returns false if no items in the array, object or string pass the predicate test', function () {
+        expect(_.some([7,7,7,7,7], function(num) {return num % 2 === 0;})).to.equal(false);
+        expect(_.some({one:'1', three:'3'}, function(num) {return num % 2 === 0;})).to.equal(false);
+        expect(_.some('string', function(letter) {return letter === 'z';})).to.equal(false);
     });
 });
