@@ -370,4 +370,10 @@ describe.only('#some', function () {
         expect(_.some({one:'1', three:'3'}, function(num) {return num % 2 === 0;})).to.equal(false);
         expect(_.some('string', function(letter) {return letter === 'z';})).to.equal(false);
     });
+    it('should bind the predicate function to the context object if one is passed', function () {
+        let context = {two:'2', four:'4', five:'5'};
+        let res = [];
+        _.some([2,2,4], function() { res.push(this.four);}, context);
+        expect(res).to.eql(['4','4','4']);
+    });
 });

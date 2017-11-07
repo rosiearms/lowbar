@@ -168,7 +168,8 @@ _.every = function(list, predicate, context) {
 return true;
 };
 
-_.some = function(list, predicate) {
+_.some = function(list, predicate, context) {
+    if (context) predicate = predicate.bind(context);
     if (Array.isArray(list) || typeof list === 'string') {
         for (let i = 0; i < list.length; i++) {
             if (predicate(list[i]) === true) return true;
