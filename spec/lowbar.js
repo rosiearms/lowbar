@@ -343,4 +343,10 @@ describe.only('#every', function () {
         expect(_.every({two:'2', four:'4', five:'5'}, function(num) {return num % 2 === 0;})).to.equal(false);
         expect(_.every('string', function(letter) {return letter === 'n';})).to.equal(false);
     });
+    it('should bind the predicate function to the context object if one is passed', function () {
+        let context = {two:'2', four:'4', five:'5'};
+        let res = [];
+        _.every([2,2,4], function() { res.push(this.four);}, context);
+        expect(res).to.eql(['4','4','4']);
+    });
 });
