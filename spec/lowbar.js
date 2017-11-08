@@ -409,4 +409,7 @@ describe.only('#defaults', function () {
         const iceCream = {flavor: 'chocolate'};
         expect(_.defaults(iceCream, {flavor: 'vanilla', sprinkles: 'lots'})).to.eql({flavor: 'chocolate', sprinkles: 'lots'});
     });
+    it('returns an array with any unfilled index positions filled in with the items in the corresponding positions from the default array', function () {
+        expect(_.defaults(['Rosie', 'James'], ['Amy', 'Lisa', 'Serena', 'Stephen'])).to.eql(['Rosie', 'James', 'Serena', 'Stephen']);
+    });
 });
