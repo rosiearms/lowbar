@@ -411,5 +411,10 @@ describe.only('#defaults', function () {
     });
     it('returns an array with any unfilled index positions filled in with the items in the corresponding positions from the default array', function () {
         expect(_.defaults(['Rosie', 'James'], ['Amy', 'Lisa', 'Serena', 'Stephen'])).to.eql(['Rosie', 'James', 'Serena', 'Stephen']);
+    });    it('returns the passed object when given in an invalid data type ', function () {
+        expect(_.defaults(1234, { num: 1234 })).to.equal(1234);
+        expect(_.defaults('string', 'string')).to.equal('string');
+        expect(_.defaults(true, { false: false })).to.equal(true);
+        expect(_.defaults(null, null)).to.equal(null);
     });
 });
