@@ -1,13 +1,13 @@
 # lowbar
-A reimplementation of some of the key methods fron the Underscore JS library. TDD included.
+A reimplementation of some of the key methods from the Underscore JS library. TDD included.
 # Setup
-- You will need version 7 or above of node. If you are unsure of your vesion open a terminal window and run:
+- You will need version 7 or above of node. If you are unsure of your version open a terminal window and run:
 
 ```npm -v```
 
 This will tell you which version you are currently running.
 
-- You will also need npm installed. If you are unsure whether you have this open a terminal windown and run:
+- You will also need npm installed. If you are unsure whether you have this, open a terminal window and run:
 
 ```npm -v```
 
