@@ -383,7 +383,7 @@ describe('#some', function () {
     });
 });
 
-describe.only('#extend', function () {
+describe('#extend', function () {
     it('is a function', function () {
         expect(_.extend).to.be.a('function');
     });
@@ -398,5 +398,15 @@ describe.only('#extend', function () {
     });
     it('replaces properties of the same name in the source object with the properties in the destination object', function () {
         expect(_.extend({one:'1', two:'2', three:'3'}, {one:'one', three:'three'})).to.eql({one:'one', two:'2', three:'three'});
+    });
+});
+
+describe.only('#defaults', function () {
+    it('is a function', function () {
+        expect(_.defaults).to.be.a('function');
+    });
+    it('returns an object with an undefined properties filled in with the first value in the following default objects', function () {
+        const iceCream = {flavor: 'chocolate'};
+        expect(_.defaults(iceCream, {flavor: 'vanilla', sprinkles: 'lots'})).to.eql({flavor: 'chocolate', sprinkles: 'lots'});
     });
 });
