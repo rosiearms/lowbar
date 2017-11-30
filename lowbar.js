@@ -5,7 +5,7 @@ _.identity = function (arg) {
 };
 
 _.first = function (arr, n = 1) {
-    if (!Array.isArray(arr) && !arr === 'string' || arr === null) return undefined;
+    if (!Array.isArray(arr) && !arr === 'string' || arr === null || arr === undefined) return undefined;
     if (n === 1) {
         return arr[0];
     } else {
@@ -18,7 +18,7 @@ _.first = function (arr, n = 1) {
 };
 
 _.last = function (arr, n = 1) {
-    if (!Array.isArray(arr) && !arr === 'string' || arr === null) return undefined;
+    if (!Array.isArray(arr) && !arr === 'string' || arr === null || arr === undefined) return undefined;
     if (n === 1) {
         return arr[arr.length - 1];
     } else {

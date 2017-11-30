@@ -34,6 +34,7 @@ describe('#first', function () {
         expect(_.first(NaN)).to.equal(undefined);
         expect(_.first(null)).to.equal(undefined);
         expect(_.first(0)).to.equal(undefined);
+        expect(_.first()).to.equal(undefined);
     });
     it('returns the first letter of a string if no number is passed as a second arguement', function () {
         expect(_.first('string')).to.equal('s');
@@ -59,6 +60,7 @@ describe('#last', function () {
         expect(_.last(NaN)).to.equal(undefined);
         expect(_.last(null)).to.equal(undefined);
         expect(_.last(0)).to.equal(undefined);
+        expect(_.last()).to.equal(undefined);
     });
     it('returns the last letter of a string if no number is passed as a second arguement', function () {
         expect(_.last('string')).to.equal('g');
@@ -401,7 +403,7 @@ describe('#extend', function () {
     });
 });
 
-describe.only('#defaults', function () {
+describe('#defaults', function () {
     it('is a function', function () {
         expect(_.defaults).to.be.a('function');
     });
