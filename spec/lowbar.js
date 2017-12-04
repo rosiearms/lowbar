@@ -12,9 +12,6 @@ describe('_', function () {
 });
 
 describe('#identity', function () {
-    it('is a function', function () {
-        expect(_.identity).to.be.a('function');
-    });
     it('returns the same value that is passed as an argument', function () {
         expect(_.identity('name')).to.equal('name');
         expect(_.identity({ name: 'stooge' })).to.eql({ name: 'stooge' });
@@ -25,9 +22,6 @@ describe('#identity', function () {
 });
 
 describe('#first', function () {
-    it('is a function', function () {
-        expect(_.first).to.be.a('function');
-    });
     it('returns undefined if anything other than an array or string is passed as an argument', function () {
         expect(_.first({ name: 'foo' })).to.equal(undefined);
         expect(_.first(10)).to.equal(undefined);
@@ -51,9 +45,6 @@ describe('#first', function () {
 });
 
 describe('#last', function () {
-    it('is a function', function () {
-        expect(_.last).to.be.a('function');
-    });
     it('returns undefined if anything other than an array or string is passed as an argument', function () {
         expect(_.last({ name: 'foo' })).to.equal(undefined);
         expect(_.last(10)).to.equal(undefined);
@@ -77,9 +68,6 @@ describe('#last', function () {
 });
 
 describe('#each', function () {
-    it('is a function', function () {
-        expect(_.each).to.be.a('function');
-    });
     it('calls the iteratee as many times as items in the passed array', function () {
         let count = 0;
         function incrCount() {
@@ -132,9 +120,6 @@ describe('#each', function () {
 });
 
 describe('#indexOf', function () {
-    it('is a function', function () {
-        expect(_.indexOf).to.be.a('function');
-    });
     it('returns -1 if the value is not found in the passed array or string', function () {
         expect(_.indexOf([1, 2, 3], 5)).to.equal(-1);
         expect(_.indexOf('string', 'h')).to.equal(-1);
@@ -158,9 +143,6 @@ describe('#indexOf', function () {
 });
 
 describe('#filter', function () {
-    it('is a function', function () {
-        expect(_.filter).to.be.a('function');
-    });
     it('looks through each value in the list, returning an array of all the values that return true', function () {
         expect(_.filter([1, 2, 3, 4, 5, 6], function (num) {
             return num % 2 === 0;
@@ -195,9 +177,6 @@ describe('#filter', function () {
 });
 
 describe('#reject', function () {
-    it('is a function', function () {
-        expect(_.reject).to.be.a('function');
-    });
     it('looks through each value in the list, returning an array of all the values that return false', function () {
         expect(_.reject([1, 2, 3, 4, 5, 6], function (num) {
             return num % 2 === 0;
@@ -232,9 +211,6 @@ describe('#reject', function () {
 });
 
 describe('#uniq', function () {
-    it('is a function', function () {
-        expect(_.uniq).to.be.a('function');
-    });
     it('returns an empty array if list is passed in an invalid format', function () {
         expect(_.uniq({one:'1', two:'2'}, false)).to.eql([]);
         expect(_.uniq(null, true)).to.eql([]);
@@ -252,9 +228,6 @@ describe('#uniq', function () {
 });
 
 describe('#map', function () {
-    it('is a function', function () {
-        expect(_.map).to.be.a('function');
-    });
     it('returns an empty array if list is an invalid format', function () {
         expect(_.map(null, function(num) {return num + 1;})).to.eql([]);
         expect(_.map(1234, function(num) {return num + 1;})).to.eql([]);
@@ -279,9 +252,6 @@ describe('#map', function () {
 });
 
 describe('#contains', function () {
-    it('is a function', function () {
-        expect(_.contains).to.be.a('function');
-    });
     it('returns true if the passed value is found in the passed array and false if not', function () {
         expect(_.contains([1,2,3], 3)).to.equal(true);
         expect(_.contains([1,2,3], 6)).to.equal(false);
@@ -297,9 +267,6 @@ describe('#contains', function () {
 });
 
 describe('#pluck', function () {
-    it('is a function', function () {
-        expect(_.pluck).to.be.a('function');
-    });
     it('returns undefined or an empty array if list is an invalid format', function () {
         expect(_.pluck(['moe', 'larry', 'curly'], 'curly')).to.eql([undefined, undefined, undefined]);
         expect(_.pluck('moe', 'm')).to.eql([undefined, undefined, undefined]);
@@ -312,9 +279,6 @@ describe('#pluck', function () {
 });
 
 describe('#reduce', function () {
-    it('is a function', function () {
-        expect(_.reduce).to.be.a('function');
-    });
     it('reduces the list to a single value', function () {
         expect(_.reduce([1,2,3], function(memo, num) {return num + memo;}, 0)).to.equal(6);
         expect(_.reduce('string', function(memo, letter) { if (letter === 't') memo.push(letter); return memo;}, [])).to.eql(['t']);
@@ -332,9 +296,6 @@ describe('#reduce', function () {
 });
 
 describe('#every', function () {
-    it('is a function', function () {
-        expect(_.every).to.be.a('function');
-    });
     it('returns true if passed a list in an invalid format', function () {
         expect(_.every(12345, function(num) {return num % 2 === 0;})).to.equal(true);
         expect(_.every(null, function(num) {return num % 2 === 0;})).to.equal(true);
@@ -359,9 +320,6 @@ describe('#every', function () {
 });
 
 describe('#some', function () {
-    it('is a function', function () {
-        expect(_.some).to.be.a('function');
-    });
     it('returns false if passed a list in an invalid format', function () {
         expect(_.some(12345, function(num) {return num % 2 === 0;})).to.equal(false);
         expect(_.some(null, function(num) {return num % 2 === 0;})).to.equal(false);
@@ -386,9 +344,6 @@ describe('#some', function () {
 });
 
 describe('#extend', function () {
-    it('is a function', function () {
-        expect(_.extend).to.be.a('function');
-    });
     it('returns the destination if passed an invalid data type', function () {
         expect(_.extend(123456, {two:'2', four:'4'})).to.eql(123456);
         expect(_.extend('string', {two:'2', four:{three: '3', one: '1'}})).to.eql('string');
@@ -404,9 +359,6 @@ describe('#extend', function () {
 });
 
 describe('#defaults', function () {
-    it('is a function', function () {
-        expect(_.defaults).to.be.a('function');
-    });
     it('returns an object with an undefined properties filled in with the first value in the following default objects', function () {
         const iceCream = {flavor: 'chocolate'};
         expect(_.defaults(iceCream, {flavor: 'vanilla', sprinkles: 'lots'})).to.eql({flavor: 'chocolate', sprinkles: 'lots'});
