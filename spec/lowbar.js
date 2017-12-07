@@ -468,3 +468,15 @@ describe('#sortBy', function () {
         expect(_.sortBy(['1', '123', '12', '1234'],str => str.length)).to.eql(['1', '12', '123', '1234']);
     });
 });
+
+describe.only('#zip', function () {
+    it('it returns an empty array when passed an invalid data type', () => {
+        expect(_.zip()).to.eql([]);
+        expect(_.zip(null)).to.eql([]);
+        expect(_.zip(123)).to.eql([]);
+        expect(_.zip({})).to.eql([]);
+    });
+    it('returns a new list of arrays with merged items', () => {
+        expect(_.zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false])).to.eql([['moe', 30, true], ['larry', 40, false], ['curly', 50, false]]);
+    });
+});

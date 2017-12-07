@@ -249,4 +249,16 @@ _.sortBy = function (list, iteratee = _.identity, context) {
     return newList.sort((a, b) => iteratee(b) < iteratee(a));
 };
 
+_.zip = function () {
+    let mergedArr = [];
+    let args = [].slice.apply(arguments);
+    _.map(args, (arr) => {
+        _.map(arr, (item, i) => {
+            if (mergedArr[i]) mergedArr[i].push(item);
+            else mergedArr[i] = [item];
+        });
+    });
+    return mergedArr;
+};
+
 module.exports = _;
