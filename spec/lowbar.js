@@ -235,7 +235,7 @@ describe('#uniq', function () {
     });
 });
 
-describe.only('#map', function () {
+describe('#map', function () {
     it('returns an empty array if list is an invalid format', function () {
         expect(_.map(null, function(num) {return num + 1;})).to.eql([]);
         expect(_.map(1234, function(num) {return num + 1;})).to.eql([]);
@@ -290,7 +290,7 @@ describe('#pluck', function () {
     });
 });
 
-describe('#reduce', function () {
+describe.only('#reduce', function () {
     it('reduces the list to a single value', function () {
         expect(_.reduce([1,2,3], function(memo, num) {return num + memo;}, 0)).to.equal(6);
         expect(_.reduce('string', function(memo, letter) { if (letter === 't') memo.push(letter); return memo;}, [])).to.eql(['t']);
@@ -300,6 +300,10 @@ describe('#reduce', function () {
         expect(_.reduce(12345, function(memo, num) {return num + memo;}, 0)).to.equal(0);
         expect(_.reduce(null, function(memo, letter) { if (letter === 't') memo.push(letter); return memo;}, [])).to.eql([]);
         expect(_.reduce(true, function(memo, item) { memo.push(item); return memo;}, [])).to.eql([]);
+    });
+    it('returns the list if no iteratee is passed', function () {
+        expect(_.reduce([1, 2, 3])).to.eql([1, 2, 3]);
+        expect(_.reduce({ one: '1', two: '2', three: '3' })).to.eql({ one: '1', two: '2', three: '3' });
     });
     it('binds the iteratee to the context object if passed one', function () {
         let context = {one:'1', two:'2'};

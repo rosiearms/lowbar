@@ -145,6 +145,7 @@ _.pluck = function(list, propName) {
 
 _.reduce = function(list, iteratee, memo, context) {
     if (context) iteratee = iteratee.bind(context);
+    if (!iteratee) return _.identity(list);
      _.each(list, function(item, i, list) { 
        if (!memo) {
            memo = item;
