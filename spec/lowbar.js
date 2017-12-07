@@ -67,7 +67,7 @@ describe('#last', function () {
     });
 });
 
-describe.only('#each', function () {
+describe('#each', function () {
     it('calls the iteratee as many times as items in the passed array', function () {
         let count = 0;
         function incrCount() {
@@ -299,7 +299,7 @@ describe('#reduce', function () {
     });
 });
 
-describe('#every', function () {
+describe.only('#every', function () {
     it('returns true if passed a list in an invalid format', function () {
         expect(_.every(12345, function(num) {return num % 2 === 0;})).to.equal(true);
         expect(_.every(null, function(num) {return num % 2 === 0;})).to.equal(true);
@@ -314,6 +314,10 @@ describe('#every', function () {
         expect(_.every([2,2,4,6,7], function(num) {return num % 2 === 0;})).to.equal(false);
         expect(_.every({two:'2', four:'4', five:'5'}, function(num) {return num % 2 === 0;})).to.equal(false);
         expect(_.every('string', function(letter) {return letter === 'n';})).to.equal(false);
+    });
+    it('returns true if no predicate is passed', function () {
+        expect(_.every([1, 2, 3])).to.eql(true);
+        expect(_.every({ one: '1', two: '2', three: '3' })).to.eql(true);
     });
     it('should bind the predicate function to the context object if one is passed', function () {
         let context = {two:'2', four:'4', five:'5'};

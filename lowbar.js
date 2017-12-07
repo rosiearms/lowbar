@@ -32,7 +32,6 @@ _.last = function (arr, n = 1) {
 
 _.each = function (list, iteratee = _.identity, context) {
     if (context) iteratee = iteratee.bind(context);
-    if (!iteratee) return list;
     if (Array.isArray(list) || typeof list === 'string') {
         for (var i = 0; i < list.length; i++) {
             iteratee(list[i], i, list);
@@ -154,7 +153,7 @@ _.reduce = function(list, iteratee, memo, context) {
     return memo;
 };
 
-_.every = function(list, predicate, context) {
+_.every = function(list, predicate = _.identity, context) {
     if (context) predicate = predicate.bind(context);
     if (Array.isArray(list) || typeof list === 'string') {
     for (var i = 0; i < list.length; i++) {
