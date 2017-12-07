@@ -436,7 +436,7 @@ describe('#shuffle', function () {
     });
 });
 
-describe.only('#invoke', function () {
+describe('#invoke', function () {
     it('it returns an empty array if passed an invalid list', () => {
         expect(_.invoke(1,2,3)).to.eql([]);
         expect(_.invoke([])).to.eql([]);
@@ -447,4 +447,24 @@ describe.only('#invoke', function () {
         let list = [[5, 1, 7], [3, 2, 1]];
        expect(_.invoke(list, 'sort')).to.eql([[1, 5, 7], [1, 2, 3]]);
     }); 
+});
+
+describe.only('#sortBy', function () {
+    it('returns an empty array if passed an invalid list', () => {
+        expect(_.sortBy()).to.eql([]);
+        expect(_.sortBy(true)).to.eql([]);
+        expect(_.sortBy(123)).to.eql([]);
+    });
+    it('it returns an array of elements sorted alphabetically when given a string', () => {
+        expect(_.sortBy('acdbef')).to.eql(['a', 'b', 'c','d', 'e', 'f']);
+    });
+    it('it returns an array of sorted elements from a passed array or an object', () => {
+        expect(_.sortBy([1,4,3,2])).to.eql([1,2,3,4]);
+        expect(_.sortBy(['a', 'd', 'c', 'b'])).to.eql(['a', 'b', 'c', 'd']);
+        expect(_.sortBy({four:'4', three:'3', two:'2', one:'1'})).to.eql(['1', '2', '3', '4']);
+    });
+    it('it returns an array of sorted elements based on an iteratee if one is passed', () => {
+        expect(_.sortBy([1,2,3,4,5,6], num => Math.sin(num))).to.eql([5, 4, 6, 3, 1, 2]);
+        expect(_.sortBy(['1', '123', '12', '1234'],str => str.length)).to.eql(['1', '12', '123', '1234']);
+    });
 });

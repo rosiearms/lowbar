@@ -231,12 +231,22 @@ _.shuffle = function (list) {
     return newList;
 };
 
-_.invoke = (list, methodName) => {
+_.invoke = function (list, methodName) {
     if (typeof list !== 'object') return [];
     const args = [].slice.call(arguments, 2);
     return _.map(list, function (item) {
         return item[methodName].apply(item, args);
     });
+};
+
+_.sortBy = function (list, iteratee = _.identity, context) {
+    if (context) iteratee.bind(context);
+    if (typeof list !== 'object' && typeof list !== 'string') return [];
+    let newList = list;
+    if (Array.isArray(list)) newList = list.slice();
+    if (typeof list === 'string') newList = list.split('');
+    if (typeof list === 'object' && list !== null) newList = Object.values(list);
+    return newList.sort((a, b) => iteratee(b) < iteratee(a));
 };
 
 module.exports = _;
