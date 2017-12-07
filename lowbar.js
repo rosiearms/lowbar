@@ -30,7 +30,7 @@ _.last = function (arr, n = 1) {
     }
 };
 
-_.each = function (list, iteratee, context) {
+_.each = function (list, iteratee = _.identity, context) {
     if (context) iteratee = iteratee.bind(context);
     if (!iteratee) return list;
     if (Array.isArray(list) || typeof list === 'string') {

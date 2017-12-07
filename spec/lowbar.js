@@ -67,7 +67,7 @@ describe('#last', function () {
     });
 });
 
-describe('#each', function () {
+describe.only('#each', function () {
     it('calls the iteratee as many times as items in the passed array', function () {
         let count = 0;
         function incrCount() {
@@ -107,6 +107,10 @@ describe('#each', function () {
         expect(_.each(123, incrCount)).to.eql(123);
         expect(_.each(null, incrCount)).to.eql(null);
         expect(_.each(0, incrCount)).to.eql(0);
+    });
+    it('returns the list if no iteratee is passed', function () {
+        expect(_.each([1, 2, 3])).to.eql([1, 2, 3]);
+        expect(_.each({ one: '1', two: '2', three: '3' })).to.eql({ one: '1', two: '2', three: '3' });
     });
     it('should bind the iteratee to the context object if one is passed', function () {
         const context = {name: 'lowbar'};
