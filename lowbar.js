@@ -231,6 +231,12 @@ _.shuffle = function (list) {
     return newList;
 };
 
-
+_.invoke = (list, methodName) => {
+    if (typeof list !== 'object') return [];
+    const args = [].slice.call(arguments, 2);
+    return _.map(list, function (item) {
+        return item[methodName].apply(item, args);
+    });
+};
 
 module.exports = _;

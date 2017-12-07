@@ -407,7 +407,7 @@ describe('#once', function () {
     });
 });
 
-describe.only('#shuffle', function () {
+describe('#shuffle', function () {
     it('returns a shuffled version of the original array each time it is called', function () {
         const arr = [1,2,3,4,5,6,7,8,9,10];
         let first = _.shuffle(arr);
@@ -434,4 +434,17 @@ describe.only('#shuffle', function () {
         let second = _.shuffle({ one: '1', two: '2', three: '3' });
        expect(first).to.not.equal(second);
     });
+});
+
+describe.only('#invoke', function () {
+    it('it returns an empty array if passed an invalid list', () => {
+        expect(_.invoke(1,2,3)).to.eql([]);
+        expect(_.invoke([])).to.eql([]);
+        expect(_.invoke({})).to.eql([]);
+        expect(_.invoke('hello')).to.eql([]);
+    });
+    it('calls passed method on each element in the list', function () {
+        let list = [[5, 1, 7], [3, 2, 1]];
+       expect(_.invoke(list, 'sort')).to.eql([[1, 5, 7], [1, 2, 3]]);
+    }); 
 });
