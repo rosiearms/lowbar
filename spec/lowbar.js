@@ -146,7 +146,7 @@ describe('#indexOf', function () {
     });
 });
 
-describe.only('#filter', function () {
+describe('#filter', function () {
     it('looks through each value in the list, returning an array of all the values that return true', function () {
         expect(_.filter([1, 2, 3, 4, 5, 6], function (num) {
             return num % 2 === 0;
@@ -235,7 +235,7 @@ describe('#uniq', function () {
     });
 });
 
-describe('#map', function () {
+describe.only('#map', function () {
     it('returns an empty array if list is an invalid format', function () {
         expect(_.map(null, function(num) {return num + 1;})).to.eql([]);
         expect(_.map(1234, function(num) {return num + 1;})).to.eql([]);
@@ -250,6 +250,10 @@ describe('#map', function () {
         expect(_.map([1,2,3], function(num, i) {return num + i;})).to.eql([1,3,5]);
         expect(_.map('str', function(letter, i) {return letter + i;})).to.eql(['s0', 't1', 'r2']);
         expect(_.map({one:'1', two:'2'}, function(item, key) {return item + key;})).to.eql(['1one', '2two']);
+    });
+    it('returns the list if no iteratee is passed', function () {
+        expect(_.map([1, 2, 3])).to.eql([1, 2, 3]);
+        expect(_.map({ one: '1', two: '2', three: '3' })).to.eql({ one: '1', two: '2', three: '3' });
     });
     it('binds the iteratee to the context object if one is passed', function () {
         let context = {one:'1', two: '2', three:'3'};
