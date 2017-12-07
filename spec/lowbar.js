@@ -398,11 +398,40 @@ describe('#defaults', function () {
     });
 });
 
-describe.only('#once', function () {
+describe('#once', function () {
     it('only calls the passed function once', function () {
        const spy = sinon.spy(console.log);
        const oneCall = _.once(spy);
        oneCall('123'), ('123'), oneCall('123');
        expect(spy.callCount).to.equal(1);
+    });
+});
+
+describe.only('#shuffle', function () {
+    it('returns a shuffled version of the original array each time it is called', function () {
+        const arr = [1,2,3,4,5,6,7,8,9,10];
+        let first = _.shuffle(arr);
+        let second = _.shuffle(arr);
+       expect(first).to.not.eql(second);
+    });
+    it('returns the same amount of elements in the new array', function () {
+        expect(_.shuffle([1,2,3,4,5,6,7,8,9,10]).length).to.equal(10);
+     });
+     it('does not alter the original array', function () {
+        const arr = [1,2,3,4,5,6,7,8,9,10];
+       expect( _.shuffle(arr)).to.not.equal(arr);
+    });
+     it('returns an array with the same amount of elements as characters in the passed string', function () {
+        expect(_.shuffle('string').length).to.equal(6);
+     });
+     it('shuffles the string elements each time it is called', function () {
+         let first = _.shuffle('string');
+         let second = _.shuffle('string');
+        expect(first).to.not.equal(second);
+     });
+     it('returns an array of shuffled values from a passed object', function () {
+        let first = _.shuffle({ one: '1', two: '2', three: '3' });
+        let second = _.shuffle({ one: '1', two: '2', three: '3' });
+       expect(first).to.not.equal(second);
     });
 });

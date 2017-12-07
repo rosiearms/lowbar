@@ -214,4 +214,23 @@ _.once = function (func) {
     };
 };
 
+_.shuffle = function (list) {
+
+    let origList;
+    let newList = [];
+
+    if (Array.isArray(list)) origList = list.slice();
+    if (typeof list === 'string') origList = list.split('');
+    if (typeof list === 'object' && list !== null) origList = Object.values(list);
+
+    while (origList.length > 0) {
+        let index = Math.floor(Math.random() * origList.length);
+        newList.push(origList[index]);
+        origList.splice(index, 1);
+    }
+    return newList;
+};
+
+
+
 module.exports = _;
