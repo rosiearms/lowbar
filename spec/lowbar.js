@@ -449,7 +449,7 @@ describe('#invoke', function () {
     }); 
 });
 
-describe.only('#sortBy', function () {
+describe('#sortBy', function () {
     it('returns an empty array if passed an invalid list', () => {
         expect(_.sortBy()).to.eql([]);
         expect(_.sortBy(true)).to.eql([]);
