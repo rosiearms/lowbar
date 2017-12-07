@@ -184,7 +184,7 @@ describe('#filter', function () {
     });
 });
 
-describe('#reject', function () {
+describe.only('#reject', function () {
     it('looks through each value in the list, returning an array of all the values that return false', function () {
         expect(_.reject([1, 2, 3, 4, 5, 6], function (num) {
             return num % 2 === 0;
@@ -206,6 +206,10 @@ describe('#reject', function () {
         expect(_.reject(0, function (letter) {
             return letter === 'n';
         })).to.eql([]);
+    });
+    it('returns the list if no predicate is passed', function () {
+        expect(_.reject([1, 2, 3])).to.eql([1, 2, 3]);
+        expect(_.reject({ one: '1', two: '2', three: '3' })).to.eql({ one: '1', two: '2', three: '3' });
     });
     it('binds the list to the context object if one is passed', function () {
         let context = {name: 'string'};
@@ -290,7 +294,7 @@ describe('#pluck', function () {
     });
 });
 
-describe.only('#reduce', function () {
+describe('#reduce', function () {
     it('reduces the list to a single value', function () {
         expect(_.reduce([1,2,3], function(memo, num) {return num + memo;}, 0)).to.equal(6);
         expect(_.reduce('string', function(memo, letter) { if (letter === 't') memo.push(letter); return memo;}, [])).to.eql(['t']);
