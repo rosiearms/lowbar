@@ -1,5 +1,6 @@
 var path = require('path');
 var expect = require('chai').expect;
+let sinon = require('sinon');
 
 var _ = require(path.join(__dirname, '..', './lowbar.js'));
 
@@ -184,7 +185,7 @@ describe('#filter', function () {
     });
 });
 
-describe.only('#reject', function () {
+describe('#reject', function () {
     it('looks through each value in the list, returning an array of all the values that return false', function () {
         expect(_.reject([1, 2, 3, 4, 5, 6], function (num) {
             return num % 2 === 0;
@@ -394,5 +395,14 @@ describe('#defaults', function () {
         expect(_.defaults('string', 'string')).to.equal('string');
         expect(_.defaults(true, { false: false })).to.equal(true);
         expect(_.defaults(null, null)).to.equal(null);
+    });
+});
+
+describe.only('#once', function () {
+    it('only calls the passed function once', function () {
+       const spy = sinon.spy(console.log);
+       const oneCall = _.once(spy);
+       oneCall('123'), ('123'), oneCall('123');
+       expect(spy.callCount).to.equal(1);
     });
 });

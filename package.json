@@ -26,6 +26,6 @@
   },
   "homepage": "https://github.com/rosiearms/lowbar#readme",
   "dependencies": {
-    "sinon": "^4.0.1"
+    "sinon": "^4.1.3"
   }
 }

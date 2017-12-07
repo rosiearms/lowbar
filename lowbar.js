@@ -136,42 +136,42 @@ _.contains = function (list, val, fromIndex = 0) {
     return false;
 };
 
-_.pluck = function(list, propName) {
-    return _.map(list, function(item, i, list) {
+_.pluck = function (list, propName) {
+    return _.map(list, function (item, i, list) {
         if (list[i].hasOwnProperty(propName)) {
             return list[i][propName];
         }
     });
 };
 
-_.reduce = function(list, iteratee, memo, context) {
+_.reduce = function (list, iteratee, memo, context) {
     if (context) iteratee = iteratee.bind(context);
     if (!iteratee) return _.identity(list);
-     _.each(list, function(item, i, list) { 
-       if (!memo) {
-           memo = item;
-           iteratee(memo, item, i, list);
-       }
-       else memo = iteratee(memo, item, i, list);     
+    _.each(list, function (item, i, list) {
+        if (!memo) {
+            memo = item;
+            iteratee(memo, item, i, list);
+        }
+        else memo = iteratee(memo, item, i, list);
     });
     return memo;
 };
 
-_.every = function(list, predicate = _.identity, context) {
+_.every = function (list, predicate = _.identity, context) {
     if (context) predicate = predicate.bind(context);
     if (Array.isArray(list) || typeof list === 'string') {
-    for (var i = 0; i < list.length; i++) {
-        if (predicate(list[i]) === false) return false;
+        for (var i = 0; i < list.length; i++) {
+            if (predicate(list[i]) === false) return false;
+        }
+    } else if (typeof list === 'object' || list !== null) {
+        for (var key in list) {
+            if (predicate(list[key]) === false) return false;
+        }
     }
-} else if (typeof list === 'object' || list !== null) {
-    for (var key in list) {
-        if (predicate(list[key]) === false) return false;
-    }
-}
-return true;
+    return true;
 };
 
-_.some = function(list, predicate, context) {
+_.some = function (list, predicate, context) {
     if (context) predicate = predicate.bind(context);
     if (Array.isArray(list) || typeof list === 'string') {
         for (let i = 0; i < list.length; i++) {
@@ -179,13 +179,13 @@ _.some = function(list, predicate, context) {
         }
     } else if (typeof list === 'object' || list !== null) {
         for (let key in list) {
-        if (predicate(list[key]) === true) return true;
+            if (predicate(list[key]) === true) return true;
+        }
     }
-}
-return false;
+    return false;
 };
 
-_.extend = function(destination) {
+_.extend = function (destination) {
     if (typeof destination === 'object' && destination !== null) {
         let sources = [].slice.call(arguments, 1);
         return Object.assign(destination, ...sources);
@@ -193,15 +193,25 @@ _.extend = function(destination) {
     return destination;
 };
 
-_.defaults = function(object) {
+_.defaults = function (object) {
     for (let i = 1; i < arguments.length; i++) {
         for (let key in arguments[i]) {
-          if (!object[key]) {
-            object[key] = arguments[i][key];
-          }
+            if (!object[key]) {
+                object[key] = arguments[i][key];
+            }
         }
-      }
-      return object;
+    }
+    return object;
+};
+
+_.once = function (func) {
+    let flag = true;
+    return () => {
+        if (flag) {
+            flag = false;
+            return func();
+        }
+    };
 };
 
 module.exports = _;
