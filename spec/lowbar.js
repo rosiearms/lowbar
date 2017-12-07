@@ -146,7 +146,7 @@ describe('#indexOf', function () {
     });
 });
 
-describe('#filter', function () {
+describe.only('#filter', function () {
     it('looks through each value in the list, returning an array of all the values that return true', function () {
         expect(_.filter([1, 2, 3, 4, 5, 6], function (num) {
             return num % 2 === 0;
@@ -168,6 +168,10 @@ describe('#filter', function () {
         expect(_.filter(0, function (letter) {
             return letter === 'n';
         })).to.eql([]);
+    });
+    it('returns the list if no predicate is passed', function () {
+        expect(_.filter([1, 2, 3])).to.eql([1, 2, 3]);
+        expect(_.filter({ one: '1', two: '2', three: '3' })).to.eql({ one: '1', two: '2', three: '3' });
     });
     it('binds the list to the context object if one is passed', function () {
         let context = {name: 'string'};
@@ -299,7 +303,7 @@ describe('#reduce', function () {
     });
 });
 
-describe.only('#every', function () {
+describe('#every', function () {
     it('returns true if passed a list in an invalid format', function () {
         expect(_.every(12345, function(num) {return num % 2 === 0;})).to.equal(true);
         expect(_.every(null, function(num) {return num % 2 === 0;})).to.equal(true);

@@ -79,6 +79,7 @@ _.indexOf = function (arr, val, isSorted) {
 
 _.filter = function (list, predicate, context) {
     if (context) predicate = predicate.bind(context);
+    if (!predicate) return _.identity(list);
     var newList = [];
     _.each(list, function (item) {
         if (predicate(item)) {
