@@ -243,6 +243,14 @@ _.sortBy = function (list, iteratee = _.identity, context) {
     if (context) iteratee.bind(context);
     if (typeof list !== 'object' && typeof list !== 'string') return [];
     let newList = list;
+    if (typeof iteratee === 'string') {
+        newList = list.slice();
+        return newList.sort(function (a, b) {
+            if (a[iteratee] < b[iteratee]) return -1;
+            if (a[iteratee] > b[iteratee]) return 1;
+            return 0;
+        });
+    }
     if (Array.isArray(list)) newList = list.slice();
     if (typeof list === 'string') newList = list.split('');
     if (typeof list === 'object' && list !== null) newList = Object.values(list);
@@ -259,6 +267,21 @@ _.zip = function () {
         });
     });
     return mergedArr;
+};
+
+_.sortedIndex = function (list, value, iteratee, context) {
+    if (context) iteratee = iteratee.bind(context);
+
+    if (!Array.isArray(list) && typeof list !== 'string') return 0;
+
+    let newList = list.slice();
+    newList.push(value);
+    
+    if (iteratee) {
+        newList = _.sortBy(newList, iteratee);
+    } else newList.sort();
+
+    return _.indexOf(newList, value);
 };
 
 module.exports = _;

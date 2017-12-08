@@ -469,7 +469,7 @@ describe('#sortBy', function () {
     });
 });
 
-describe.only('#zip', function () {
+describe('#zip', function () {
     it('it returns an empty array when passed an invalid data type', () => {
         expect(_.zip()).to.eql([]);
         expect(_.zip(null)).to.eql([]);
@@ -478,5 +478,24 @@ describe.only('#zip', function () {
     });
     it('returns a new list of arrays with merged items', () => {
         expect(_.zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false])).to.eql([['moe', 30, true], ['larry', 40, false], ['curly', 50, false]]);
+    });
+});
+
+describe.only('#sortedIndex', function () {
+    it('it returns 0 when passed an invalid data type', () => {
+        expect(_.sortedIndex()).to.eql(0);
+        expect(_.sortedIndex(null)).to.eql(0);
+        expect(_.sortedIndex(123)).to.eql(0);
+        expect(_.sortedIndex({})).to.eql(0);
+    });
+    it('returns the index position of where an element should be placed in a sorted array', () => {
+        expect(_.sortedIndex([10, 30, 40, 60], 35)).to.eql(2);
+    });
+    it('returns the index position of where an element should be placed in a sorted array in relation to the iteratee', () => {
+        expect(_.sortedIndex(['1', '12', '123', '12345'], '1234', 'length')).to.eql(3);
+    });
+    it('returns the index position of where an element should be placed in relation to object values', () => {
+        var stooges = [{name: 'moe', age: 40}, {name: 'curly', age: 60}];
+        expect( _.sortedIndex(stooges, {name: 'larry', age: 50}, 'age')).to.eql(1);
     });
 });
