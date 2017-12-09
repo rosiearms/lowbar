@@ -305,4 +305,16 @@ _.intersection = function () {
     }, []);
   };
 
+_.difference = function (array) {
+
+    let others = [].slice.call(arguments, 1);
+    
+        return _.reduce(array, (acc, item) => {
+          if (_.every(others, (arr) => !_.contains(arr, item))
+            && !_.contains(acc, item)) acc.push(item);
+          return acc;
+        }, []);
+
+};
+
 module.exports = _;

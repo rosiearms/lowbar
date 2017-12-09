@@ -515,7 +515,7 @@ describe('#flatten', function () {
     });
 });
 
-describe.only('#intersection', function () {
+describe('#intersection', function () {
     it('it returns an empty array when passed an invalid data type', () => {
         expect(_.intersection()).to.eql([]);
         expect(_.intersection(null)).to.eql([]);
@@ -524,5 +524,17 @@ describe.only('#intersection', function () {
     });
     it('it returns an array of all the values that are present at least once in each individual array', () => {
         expect(_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1])).to.eql([1, 2]);
+    });
+});
+
+describe.only('#difference', function () {
+    it('it returns an empty array when passed an invalid data type', () => {
+        expect(_.difference()).to.eql([]);
+        expect(_.difference(null)).to.eql([]);
+        expect(_.difference(123)).to.eql([]);
+        expect(_.difference({})).to.eql([]);
+    });
+    it('it returns an array of all the values that are present at least once in each individual array', () => {
+        expect(_.difference([1, 2, 3, 4, 5], [5, 2, 10])).to.eql([1, 3, 4]);
     });
 });
