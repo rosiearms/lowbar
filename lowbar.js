@@ -294,4 +294,15 @@ _.flatten = function (arr, shallow) {
    }, []);
 };
 
+_.intersection = function () {
+
+    let args = [].slice.apply(arguments);
+
+    return _.reduce(args[0], (acc, item) => {
+      if (_.every(args, (arr) => _.contains(arr, item))
+        && !_.contains(acc, item)) acc.push(item);
+      return acc;
+    }, []);
+  };
+
 module.exports = _;

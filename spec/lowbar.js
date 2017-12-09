@@ -500,7 +500,7 @@ describe('#sortedIndex', function () {
     });
 });
 
-describe.only('#flatten', function () {
+describe('#flatten', function () {
     it('it returns an empty array when passed an invalid data type', () => {
         expect(_.flatten()).to.eql([]);
         expect(_.flatten(null)).to.eql([]);
@@ -512,5 +512,17 @@ describe.only('#flatten', function () {
     });
     it('it returns a flattened array if shallow is not passed and there are more than one nested arrays', () => {
         expect(_.flatten([[1],2, [3,[4]]])).to.eql([1,2,3,4]);
+    });
+});
+
+describe.only('#intersection', function () {
+    it('it returns an empty array when passed an invalid data type', () => {
+        expect(_.intersection()).to.eql([]);
+        expect(_.intersection(null)).to.eql([]);
+        expect(_.intersection(123)).to.eql([]);
+        expect(_.intersection({})).to.eql([]);
+    });
+    it('it returns an array of all the values that are present at least once in each individual array', () => {
+        expect(_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1])).to.eql([1, 2]);
     });
 });
