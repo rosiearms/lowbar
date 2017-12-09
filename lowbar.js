@@ -284,4 +284,14 @@ _.sortedIndex = function (list, value, iteratee, context) {
     return _.indexOf(newList, value);
 };
 
+_.flatten = function (arr, shallow) {
+   if (!Array.isArray(arr)) return []; 
+   return _.reduce(arr, (acc, item) => {
+    if (shallow) return acc.concat(item);
+    else if (Array.isArray(item)) { 
+        return _.flatten(acc.concat(item));
+    } else return acc.concat(item);
+   }, []);
+};
+
 module.exports = _;

@@ -481,7 +481,7 @@ describe('#zip', function () {
     });
 });
 
-describe.only('#sortedIndex', function () {
+describe('#sortedIndex', function () {
     it('it returns 0 when passed an invalid data type', () => {
         expect(_.sortedIndex()).to.eql(0);
         expect(_.sortedIndex(null)).to.eql(0);
@@ -497,5 +497,20 @@ describe.only('#sortedIndex', function () {
     it('returns the index position of where an element should be placed in relation to object values', () => {
         var stooges = [{name: 'moe', age: 40}, {name: 'curly', age: 60}];
         expect( _.sortedIndex(stooges, {name: 'larry', age: 50}, 'age')).to.eql(1);
+    });
+});
+
+describe.only('#flatten', function () {
+    it('it returns an empty array when passed an invalid data type', () => {
+        expect(_.flatten()).to.eql([]);
+        expect(_.flatten(null)).to.eql([]);
+        expect(_.flatten(123)).to.eql([]);
+        expect(_.flatten({})).to.eql([]);
+    });
+    it('it returns a flattened array if shallow is passed', () => {
+        expect(_.flatten([1,2, [3]], true)).to.eql([1,2,3]);
+    });
+    it('it returns a flattened array if shallow is not passed and there are more than one nested arrays', () => {
+        expect(_.flatten([[1],2, [3,[4]]])).to.eql([1,2,3,4]);
     });
 });
