@@ -534,7 +534,7 @@ describe.only('#difference', function () {
         expect(_.difference(123)).to.eql([]);
         expect(_.difference({})).to.eql([]);
     });
-    it('it returns an array of all the values that are present at least once in each individual array', () => {
+    it('it returns an array of all the values from a given array that are present in the other arrays', () => {
         expect(_.difference([1, 2, 3, 4, 5], [5, 2, 10])).to.eql([1, 3, 4]);
     });
 });
