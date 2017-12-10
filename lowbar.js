@@ -321,4 +321,14 @@ _.delay = function (func, wait, ...args) {
     setTimeout(() => func.apply(null, args), wait);
 };
 
+_.where = function (list, props) {
+    return _.filter(list, (obj) => {
+        let res = true;
+        for (let key in props) {
+            if (obj[key] !== props[key]) res = false;
+        }
+        return res;
+    });
+};
+
 module.exports = _;

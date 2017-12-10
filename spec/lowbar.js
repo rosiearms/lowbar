@@ -539,7 +539,7 @@ describe('#difference', function () {
     });
 });
 
-describe.only('#delay', function () {
+describe('#delay', function () {
 
     beforeEach(() => {
         this.clock = sinon.useFakeTimers();
@@ -553,5 +553,21 @@ describe.only('#delay', function () {
         expect(spy.callCount).to.eql(0);
         this.clock.tick(300);
         expect(spy.calledOnce).to.equal(true);
+    });
+});
+
+describe.only('#where', function () {
+    it('returns an empty array when passed an invalid data type', () => {
+        expect(_.where(null, { author: 'Shakespeare', year: 1611})).to.eql([]);
+        expect(_.where(123)).to.eql([]);
+        expect(_.where({})).to.eql([]);
+    });
+    it('returns an array when passed a string', () => {
+        expect(_.where('hello')).to.eql([ 'h', 'e', 'l', 'l', 'o' ]);
+    });
+    it('returns an array with the elements from the list that contain the passed properties', () => {
+        const listOfPlays = [{ title: 'Cymbeline', author: 'Shakespeare', year: 1611 }, { title: 'notaplay', author: 'notanauthor', year: 1900 }, { title: 'The Tempest', author: 'Shakespeare', year: 1611 }];
+        const result = [{ title: 'Cymbeline', author: 'Shakespeare', year: 1611 }, { title: 'The Tempest', author: 'Shakespeare', year: 1611 }];
+        expect(_.where(listOfPlays, { author: 'Shakespeare', year: 1611 })).to.eql(result);
     });
 });
