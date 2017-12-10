@@ -276,7 +276,7 @@ _.sortedIndex = function (list, value, iteratee, context) {
 
     let newList = list.slice();
     newList.push(value);
-    
+
     if (iteratee) {
         newList = _.sortBy(newList, iteratee);
     } else newList.sort();
@@ -285,13 +285,13 @@ _.sortedIndex = function (list, value, iteratee, context) {
 };
 
 _.flatten = function (arr, shallow) {
-   if (!Array.isArray(arr)) return []; 
-   return _.reduce(arr, (acc, item) => {
-    if (shallow) return acc.concat(item);
-    else if (Array.isArray(item)) { 
-        return _.flatten(acc.concat(item));
-    } else return acc.concat(item);
-   }, []);
+    if (!Array.isArray(arr)) return [];
+    return _.reduce(arr, (acc, item) => {
+        if (shallow) return acc.concat(item);
+        else if (Array.isArray(item)) {
+            return _.flatten(acc.concat(item));
+        } else return acc.concat(item);
+    }, []);
 };
 
 _.intersection = function () {
@@ -299,22 +299,26 @@ _.intersection = function () {
     let args = [].slice.apply(arguments);
 
     return _.reduce(args[0], (acc, item) => {
-      if (_.every(args, (arr) => _.contains(arr, item))
-        && !_.contains(acc, item)) acc.push(item);
-      return acc;
+        if (_.every(args, (arr) => _.contains(arr, item))
+            && !_.contains(acc, item)) acc.push(item);
+        return acc;
     }, []);
-  };
+};
 
 _.difference = function (array) {
 
     let others = [].slice.call(arguments, 1);
-    
-        return _.reduce(array, (acc, item) => {
-          if (_.every(others, (arr) => !_.contains(arr, item))
-            && !_.contains(acc, item)) acc.push(item);
-          return acc;
-        }, []);
 
+    return _.reduce(array, (acc, item) => {
+        if (_.every(others, (arr) => !_.contains(arr, item))
+            && !_.contains(acc, item)) acc.push(item);
+        return acc;
+    }, []);
+
+};
+
+_.delay = function (func, wait, ...args) {
+    setTimeout(() => func.apply(null, args), wait);
 };
 
 module.exports = _;
